@@ -7,6 +7,13 @@ export default defineConfig({
     target: 'esnext',
     // sourcemap: true
   },
+  server: {
+    port: 8080
+  },
+  resolve: name => {
+    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+    return pages[`./Pages/${name}.vue`]
+  },
   plugins: [
     laravel({
       input: 'resources/js/app.js',
